@@ -17,14 +17,19 @@ define(function(require, exports, module) {
             var which = keyEvent.which
             if (which == 123) { //F12
                 brackets.app.showDeveloperTools();
-            } else if (which == 16 && keyEvent.shiftKey) { //{
-                lastWasBrace = true
-            } else if (which == 13) { //Enter
+            }
+            if (which == 13) { //Enter
                 if (lastWasBrace) {
                     insertNew = true
                 }
                 lastWasBrace = false
-            } else if (which != 219) { //shift
+            } else if (which != 16) { //shift
+                lastWasBrace = false
+            }
+            if (which == 219 && keyEvent.shiftKey) { //{
+                lastWasBrace = true
+            }
+            else{
                 lastWasBrace = false
             }
         }
